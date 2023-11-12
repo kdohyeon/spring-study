@@ -14,8 +14,8 @@ public class UserService {
 
     public User getUserByName(String name) {
         long start = System.currentTimeMillis();
-        User user = userRepository.findByName(name)
-                .orElseThrow(() -> new RuntimeException(String.format("사용자를 찾을 수 없습니다. userName=%s", name)));
+        User user = userRepository.findByUserName(name)
+                .orElse(new User("-", "test", "010-1234-5668"));
         long end = System.currentTimeMillis();
 
         log.info("수행 시간={}ms", end-start);
