@@ -1,5 +1,6 @@
 package kdohyeon.springstudy.aop.user;
 
+import kdohyeon.springstudy.aop.aspect.Timer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,24 +14,13 @@ public class UserService {
     }
 
     public User getUserByName(String name) {
-        long start = System.currentTimeMillis();
-        User user = userRepository.findByUserName(name)
+        return userRepository.findByUserName(name)
                 .orElse(new User("-", "test", "010-1234-5668"));
-        long end = System.currentTimeMillis();
-
-        log.info("수행 시간={}ms", end-start);
-
-        return user;
     }
 
+    @Timer
     public User getUserByPhoneNumber(String phoneNumber) {
-        long start = System.currentTimeMillis();
-        User user = userRepository.findByPhoneNumber(phoneNumber)
-                .orElseThrow(() -> new RuntimeException(String.format("사용자를 찾을 수 없습니다. phoneNumber=%s", phoneNumber)));
-        long end = System.currentTimeMillis();
-
-        log.info("수행 시간={}ms", end-start);
-
-        return user;
+        return userRepository.findByPhoneNumber(phoneNumber)
+                .orElse(new User("-", "test", "010-1234-5668"));
     }
 }
