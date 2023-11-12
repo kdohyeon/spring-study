@@ -14,4 +14,9 @@ public class UserService {
         return userRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException(String.format("사용자를 찾을 수 없습니다. userName=%s", name)));
     }
+
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new RuntimeException(String.format("사용자를 찾을 수 없습니다. phoneNumber=%s", phoneNumber)));
+    }
 }

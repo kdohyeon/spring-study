@@ -15,4 +15,9 @@ public class UserController {
     public User getUserByName(String name) {
         return userService.getUserByName(name);
     }
+
+    @GetMapping("/api/v1/user/phone/{phoneNumber}")
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userService.getUserByPhoneNumber(phoneNumber);
+    }
 }
